@@ -9,7 +9,10 @@ class SweetShop {
         var order:Order = orders.get(id)
         var number:Int = 0
         while (employees.get(number).specialization != order.sweet || number < orders.size) {number++}
-        if (employees.get(number).specialization == order.sweet) {orders.removeAt(id)}
+        if (employees.get(number).specialization == order.sweet) {
+            orders.removeAt(id)
+            println("Заказ номер ${id+1} выполнен сотрудником ${employees.get(number).firstName}")
+        }
     }
 
     fun addEmloyee(employee: Employee) { this.employees.add(employee)}
