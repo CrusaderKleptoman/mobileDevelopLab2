@@ -8,7 +8,9 @@ class SweetShop {
     {
         var order:Order = orders.get(id)
         var number:Int = 0
+
         while (employees.get(number).specialization != order.sweet || number < orders.size) {number++}
+
         if (employees.get(number).specialization == order.sweet) {
             orders.removeAt(id)
             println("Заказ номер ${id+1} выполнен сотрудником ${employees.get(number).firstName}")
@@ -17,5 +19,14 @@ class SweetShop {
 
     fun addEmloyee(employee: Employee) { this.employees.add(employee)}
 
-    fun addOrder(order: Order) { this.orders.add(order)}
+    fun removeEmployee(employee: Employee) {this.employees.remove(employee)}
+    fun removeEmployee(id: Int) {this.employees.removeAt(id)}
+
+    fun writeAllEmployees(){ for (employee in employees) println(employee.toString())   }
+    fun writeAllOrders(){ for (order in orders) println(order.toString()) }
+
+    fun addOrder(order: Order) {
+        this.orders.add(order)
+        executeOrder(this.orders.lastIndex)
+    }
 }
