@@ -14,42 +14,47 @@ fun menu()
 {
     var inputCode = "0"
     var sweetShop: SweetShop = SweetShop()
-    while (true)
+    while (true) {
         println(textMainMenu)
         inputCode = scanner.next()
-        when(inputCode){
-            "1" ->{
-                var textInputSweet:String = File("src/main/kotlin/TextMessage/TextInputSweet.txt").readText(Charsets.UTF_8)
-                var newOrder: Order
+        when (inputCode) {
+            "1" -> {
+                var textInputSweet: String =
+                    File("src/main/kotlin/TextMessage/TextInputSweet.txt").readText(Charsets.UTF_8)
+                var newOrder:Order = Order(0, Confectionery.NONE)
                 println(textInputSweet)
                 inputCode = scanner.next()
                 println("Введите количество кондитерского изделия")
-                var inputAmount:Int = scanner.nextInt()
-                when(inputCode){
-                    "1" ->{
-                        newOrder.sweet = Confectionery.CAKE
+                var inputAmount: Int = scanner.nextInt()
+                when (inputCode) {
+                    "1" -> {
+                        newOrder = Order(inputAmount, Confectionery.CAKE)
                     }
+
                     "2" -> {
-                        newOrder.sweet = Confectionery.SWEET
+                        newOrder = Order(inputAmount, Confectionery.SWEET)
                     }
+
                     "3" -> {
-                        newOrder.sweet = Confectionery.CUPCACKE
+                        newOrder = Order(inputAmount, Confectionery.CUPCACKE)
                     }
                 }
-                newOrder.amount = inputAmount
                 sweetShop.addOrder(newOrder)
-                println("Номер заказа = ${sweetShop.writeOrder(newOrder)}")
+                println("Номер заказа = ${sweetShop.writeOrderIndex(newOrder)}")
             }
+
             "2" -> {
-                var orderId:Int = scanner.nextInt()
+                var orderId: Int = scanner.nextInt()
                 sweetShop.executeOrder(orderId)
 
             }
+
             "3" -> {
                 sweetShop.writeAllOrders()
-
             }
+
             "0" -> return
             else -> println("Некоректная команда, повторите ввод")
         }
+    }
 }
