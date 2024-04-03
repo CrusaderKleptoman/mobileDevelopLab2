@@ -24,6 +24,7 @@ class SweetShop {
 
     fun writeAllEmployees(){ for (employee in employees) println(employee.toString())   }
     fun writeAllOrders(){ for (order in orders) println(order.toString()) }
+    fun writeOrder(order: Order){println(orders.indexOf(order))}
 
     fun addOrder(order: Order) {
         this.orders.add(order)
