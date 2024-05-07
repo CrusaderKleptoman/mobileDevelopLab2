@@ -6,15 +6,8 @@ class SweetShop {
 
     fun executeOrder(id:Int)
     {
-        var order:Order = orders.get(id)
-        var number:Int = 0
-
-        while (employees.get(number).specialization != order.sweet || number < orders.size) {number++}
-
-        if (employees.get(number).specialization == order.sweet) {
-            orders.removeAt(id)
-            println("Заказ номер ${id+1} выполнен сотрудником ${employees.get(number).firstName}")
-        }
+        orders.get(id).executeOrder()
+        orders.removeAt(id)
     }
 
     fun addEmloyee(employee: Employee) { this.employees.add(employee)}
@@ -24,10 +17,19 @@ class SweetShop {
 
     fun writeAllEmployees(){ for (employee in employees) println(employee.toString())   }
     fun writeAllOrders(){ for (order in orders) println(order.toString()) }
-    fun writeOrder(order: Order){println(orders.indexOf(order))}
+    fun writeOrderIndex(order: Order){println(orders.indexOf(order))}
 
-    fun addOrder(order: Order) {
-        this.orders.add(order)
-        executeOrder(this.orders.lastIndex)
+    fun addOrder(amount:Int, specialization:Confectionery) {
+        employees.forEach {
+            if (it.specialization == specialization)
+            {
+                this.orders.add(Order(amount, it))
+                println("Заказ принят")
+            }
+            else
+            {
+                println("Заказ не был принят, отсутствует необходимый специалист")
+            }
+        }
     }
 }

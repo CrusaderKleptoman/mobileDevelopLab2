@@ -1,6 +1,12 @@
 package Confectionery
 
 enum class Confectionery {
+    NONE{
+        override val price = 0.0f
+        override fun printName(): String {
+            return "Отсутствует"
+        }
+        },
     CAKE {
         override val price = 20.0f
         override fun printName(): String {
