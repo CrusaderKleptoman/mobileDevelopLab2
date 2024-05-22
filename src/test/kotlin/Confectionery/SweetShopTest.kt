@@ -10,9 +10,10 @@ class SweetShopTest {
     @Test
     fun addEmloyee1() {
         var sweetShop:SweetShop = SweetShop()
-        val testUser = Employee("John", "Worker", Confectionery.CAKE)
+        val testUser = EmployeeSweet("John", "Worker")
         sweetShop.addEmloyee(testUser)
         sweetShop.writeAllEmployees()
         assertEquals(testUser, sweetShop.employees.get(0))
     }
+
 }

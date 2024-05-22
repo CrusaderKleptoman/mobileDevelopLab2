@@ -6,6 +6,8 @@ data class Order(var amount:Int, var employee: Employee) {
     }
     fun executeOrder()
     {
-        println("Заказ выполнен сотрудником ${employee.firstName}")
+        var confectionery:Confectionery = employee.cook()
+        println("${toString()}, выполнен сотрудником ${employee.firstName}")
+        println("Стоимость заказа = ${confectionery.price*this.amount}")
     }
 }

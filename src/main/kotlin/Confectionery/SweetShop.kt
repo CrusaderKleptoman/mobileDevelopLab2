@@ -10,6 +10,14 @@ class SweetShop {
         orders.removeAt(id)
     }
 
+    fun executeAllOrder()
+    {
+        orders.forEach{
+            it.executeOrder()
+        }
+        orders.clear()
+    }
+
     fun addEmloyee(employee: Employee) { this.employees.add(employee)}
 
     fun removeEmployee(employee: Employee) {this.employees.remove(employee)}
@@ -18,7 +26,7 @@ class SweetShop {
     fun writeAllEmployees(){ for (employee in employees) println(employee.toString())   }
     fun writeAllOrders(){ for (order in orders) println(order.toString()) }
     fun writeOrderIndex(order: Order){println(orders.indexOf(order))}
-
+    fun writeOrder(id:Int){println(orders.get(id).toString())}
     fun addOrder(amount:Int, specialization:Confectionery) {
         employees.forEach {
             if (it.specialization == specialization)
